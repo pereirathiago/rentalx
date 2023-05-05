@@ -1,24 +1,25 @@
 import { Router } from "express"
-import { Category } from "../model/Category"
+import { CategoriesRepository } from "../repositories/CategoriesRepository"
+import { CreateCategoryService } from "../services/CreateCategoryService"
+import { PostgresCategoriesRepository } from "../repositories/PostgresCategoriesRepository"
 
 const categoriesRoutes = Router()
-
-const categories: Category[] = []
+const categoriesRepository = new CategoriesRepository()
 
 categoriesRoutes.post("/", (req, res) => {
-    const { name, description, title } = req.body
+    const { name, description } = req.body
 
-    const category = new Category() 
-    
-    Object.assign(category, {
-        name,
-        description,
-        created_at: new Date()
-    })
+    const createCategoryService = new CreateCategoryService(categoriesRepository)
 
-    categories.push(category)
+    createCategoryService.execute({ name, description })
 
-    return res.status(201).json({category})
+    return res.status(201).send()
+})
+
+categoriesRoutes.get("/", (req, res) => {
+    const all = categoriesRepository.list()
+
+    return res.json(all)
 })
 
 
