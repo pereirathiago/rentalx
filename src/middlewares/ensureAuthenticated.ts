@@ -26,6 +26,10 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
       throw new AppError("User does not exists", 401)
     }
 
+    req.user = {
+      id: user_id
+    }
+
     next()
   } catch {
     throw new AppError("Invalid token!", 401)
