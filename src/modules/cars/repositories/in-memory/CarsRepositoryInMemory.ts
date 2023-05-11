@@ -1,15 +1,21 @@
 import { ICreateCarDTO } from "@modules/cars/dtos/ICreateCarDTO";
 import { ICarsRepository } from "../ICarsRepository";
-import { Cars } from "@modules/cars/infra/typeorm/entities/Car";
+import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 
 class CarsRepositoryInMemory implements ICarsRepository {
-  cars: Cars[] = []
-  async create({ brand, category_id, daily_rate, description, fine_amount, name, license_place }: ICreateCarDTO): Promise<void> {
-    const car = new Cars()
+  car: Car[] = []
+  async create({ brand, category_id, daily_rate, description, fine_amount, name, license_plate }: ICreateCarDTO): Promise<Car> {
+    const car = new Car()
+    
+    Object.assign(car, { brand, category_id, daily_rate, description, fine_amount, name, license_plate })
+    
+    this.car.push(car)
 
-    Object.assign(car, { brand, category_id, daily_rate, description, fine_amount, name, license_place })
+    return car
+  }
 
-    this.cars.push(car)
+  async findByLicensePlate(license_plate: string): Promise<Car> {
+    return this.car.find(car => car.license_plate === license_plate)
   }
 
 }
