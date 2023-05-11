@@ -2,11 +2,14 @@ import { CreateCarController } from "@modules/cars/useCases/createCar/CreateCarC
 import { Router } from "express";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { ensureAdmin } from "../middlewares/ensureAdmin";
+import { ListAvailableCarsController } from "@modules/cars/useCases/listAvailableCars/ListAvailableCarsController";
 
 const carsRoutes = Router()
 
-let createCarController = new CreateCarController()
+const createCarController = new CreateCarController()
+const listAvailableController = new ListAvailableCarsController()
 
 carsRoutes.post("/", ensureAuthenticated, ensureAdmin, createCarController.handle)
+carsRoutes.get("/available", listAvailableController.handle)
 
 export { carsRoutes }
