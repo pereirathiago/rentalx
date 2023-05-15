@@ -1,3 +1,5 @@
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository"
+import { AppError } from "@shared/errors/AppError"
 
 interface IRequest {
   user_id: string
@@ -9,7 +11,15 @@ class CreateRentalUseCase {
   constructor(private rentalsRepository: IRentalsRepository) {}
 
   async execute({ user_id, car_id, expected_return_data }: IRequest): Promise<void> {
-    const carAvailable = await this.rentalsRepository.findByCar(car_id)
+    const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id)
+    if(carUnavailable) {
+      throw new AppError("Car is unavailable")
+    }
+
+    const rentalOpenToUser = await this.rentalsRepository.findOpenRentalByUser(user_id)
+    if(rentalOpenToUser) {
+      throw new AppError("There's a rental in progress for user")
+    }
   }
 }
 
