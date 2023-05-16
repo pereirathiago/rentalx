@@ -7,11 +7,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 let connection: Connection
 
-describe("Create category controller", () => {
+describe("List category controller", () => {
   beforeAll(async () => {
     connection = await createConnection()
     await connection.runMigrations()
-
     const id = uuidv4()
     const password = await hash('admin', 8)
     await connection.query(
@@ -24,7 +23,7 @@ describe("Create category controller", () => {
     await connection.close()
   })
 
-  it("should ber able to create a new category", async () => {
+  it("should ber able to list all categories", async () => {
     const responseToken = await request(app).post("/sessions").send({
       email: "admin@rentlx.com.br",
       password: "admin"
@@ -33,32 +32,19 @@ describe("Create category controller", () => {
     const { token } = responseToken.body
 
 
-    const response = await request(app).post("/categories").send({
+    await request(app).post("/categories").send({
       name: "Category SuperTest",
       description: "Category supertest"
     }).set({
       Authorization: `Bearer ${token}`
     })
 
-    expect(response.status).toBe(201)
-  })
+    const response = await request(app).get("/categories")
 
-  it("should not be able to create a new category with name exists", async () => {
-    const responseToken = await request(app).post("/sessions").send({
-      email: "admin@rentlx.com.br",
-      password: "admin"
-    })
+    console.log(response.body)
 
-    const { token } = responseToken.body
-
-
-    const response = await request(app).post("/categories").send({
-      name: "Category SuperTest",
-      description: "Category supertest"
-    }).set({
-      Authorization: `Bearer ${token}`
-    })
-
-    expect(response.status).toBe(400)
+    expect(response.status).toBe(200)
+    expect(response.body.length).toBe(1)
+    expect(response.body[0]).toHaveProperty("id")
   })
 }) 
