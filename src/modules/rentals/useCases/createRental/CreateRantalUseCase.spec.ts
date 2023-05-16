@@ -9,6 +9,7 @@ import { DayjsDateProvider } from "@shared/container/providers/DateProvider/impl
 
 let createRentalUseCase: CreateRentalUseCase
 let rentalsRepositoryInMemory: RentalsRepositoryInMemory
+let carsRepositoryInMemory: CarsRepositoryInMemory
 let dayJsProvider: DayjsDateProvider
 
 describe("Create Rental", () => {
@@ -17,9 +18,11 @@ describe("Create Rental", () => {
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory()
     dayJsProvider = new DayjsDateProvider()
+    carsRepositoryInMemory = new CarsRepositoryInMemory()
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepositoryInMemory,
-      dayJsProvider
+      dayJsProvider,
+      carsRepositoryInMemory
     )
   })
 
