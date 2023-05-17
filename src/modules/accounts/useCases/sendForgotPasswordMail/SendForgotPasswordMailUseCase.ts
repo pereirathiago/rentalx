@@ -21,7 +21,7 @@ class SendForgotPasswordMailUseCase {
       throw new AppError("user does not exists")
     }
     const token = uuidV4()
-    const expires_date = this.dateProvider.addHours()
+    const expires_date = this.dateProvider.addHours(3)
     await this.usersTokensRepository.create({
       refresh_token: token,
       user_id: user.id,
