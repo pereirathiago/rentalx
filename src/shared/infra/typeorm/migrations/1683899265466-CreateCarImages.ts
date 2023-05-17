@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm"
 
 export class CreateCarImages1683899265466 implements MigrationInterface {
 

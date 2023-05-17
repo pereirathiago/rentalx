@@ -1,7 +1,7 @@
-import { ICreateUserTokenDTO } from "@modules/accounts/dtos/ICreateUserTokenDTO";
-import { IUserTokenReposiory } from "@modules/accounts/repositories/IUserTokenRepository";
-import { UserToken } from "../entities/UserToken";
-import { Repository, getRepository } from "typeorm";
+import { ICreateUserTokenDTO } from "@modules/accounts/dtos/ICreateUserTokenDTO"
+import { IUserTokenReposiory } from "@modules/accounts/repositories/IUserTokenRepository"
+import { UserToken } from "../entities/UserToken"
+import { Repository, getRepository } from "typeorm"
 
 class UsersTokenRepository implements IUserTokenReposiory {
   private repository: Repository<UserToken>

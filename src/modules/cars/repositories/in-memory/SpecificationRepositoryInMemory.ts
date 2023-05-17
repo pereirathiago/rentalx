@@ -1,5 +1,5 @@
-import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
-import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationRepository";
+import { Specification } from "@modules/cars/infra/typeorm/entities/Specification"
+import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationRepository"
 
 class SpecificationRepositoryInMemory implements ISpecificationsRepository {
   specifications: Specification[] = []
@@ -19,8 +19,8 @@ class SpecificationRepositoryInMemory implements ISpecificationsRepository {
     )
   }
   async findByIds(ids: string[]): Promise<Specification[]> {
-    const specs = this.specifications.filter((spec) => ids.includes(spec.id));
-    return specs;
+    const specs = this.specifications.filter((spec) => ids.includes(spec.id))
+    return specs
   }
 
 }

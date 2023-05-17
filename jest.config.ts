@@ -1,5 +1,5 @@
 import { pathsToModuleNameMapper } from "ts-jest/utils"
-import { compilerOptions } from "./tsconfig.json";
+import { compilerOptions } from "./tsconfig.json"
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -187,4 +187,4 @@ export default {
 
   // Whether to use watchman for file crawling
   // watchman: true,
-};
+}
