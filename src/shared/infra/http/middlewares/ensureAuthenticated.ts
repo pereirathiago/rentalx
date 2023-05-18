@@ -11,7 +11,6 @@ interface IPayload {
 
 export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization
-  const userTokenRepository = new UsersTokenRepository()
 
   if (!authHeader) {
     throw new AppError("Token missing", 401)
@@ -20,14 +19,7 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
   const [, token] = authHeader.split(" ") // vem no padrao Bearer token - com [, token] pegamos só oq token
 
   try {
-    const { sub: user_id } = verify(token, auth.secret_refresh_token) as IPayload
-    const usersRepository = new UsersRepository()
-
-    const user = await userTokenRepository.findByUserIdAndRefreshToken(user_id, token)
-
-    if(!user) {
-      throw new AppError("User does not exists", 401)
-    }
+    const { sub: user_id } = verify(token, auth.secret_token) as IPayload
 
     req.user = {
       id: user_id
