@@ -15,7 +15,7 @@ const listAvailableController = new ListAvailableCarsController()
 const createCarSpecificationController = new CreateCarSpecificationController()
 const uploadCarImagesController = new UploadCarImageController()
 
-const upload = multer(uploadConfig.upload("./tmp/cars"))
+const upload = multer(uploadConfig)
 
 carsRoutes.post("/", ensureAuthenticated, ensureAdmin, createCarController.handle)
 carsRoutes.get("/available", listAvailableController.handle)
