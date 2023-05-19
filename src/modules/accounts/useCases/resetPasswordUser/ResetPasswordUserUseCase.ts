@@ -1,8 +1,8 @@
-import { IUserTokenReposiory } from "@modules/accounts/repositories/IUserTokenRepository";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
-import { AppError } from "@shared/errors/AppError";
-import { inject, injectable } from "tsyringe";
+import { IUserTokenReposiory } from "@modules/accounts/repositories/IUserTokenRepository"
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository"
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider"
+import { AppError } from "@shared/errors/AppError"
+import { inject, injectable } from "tsyringe"
 import { hash } from "bcrypt"
 
 interface IRequest {

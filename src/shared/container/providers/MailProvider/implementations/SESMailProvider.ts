@@ -1,6 +1,6 @@
-import { injectable } from "tsyringe";
+import { injectable } from "tsyringe"
 import { SES } from "aws-sdk"
-import { IMailProvider } from "../IMailProvider";
+import { IMailProvider } from "../IMailProvider"
 import nodemailer, { Transporter } from "nodemailer"
 import handlebars from "handlebars"
 import fs from "fs"

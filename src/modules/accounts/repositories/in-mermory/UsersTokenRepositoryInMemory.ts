@@ -1,6 +1,6 @@
-import { ICreateUserTokenDTO } from "@modules/accounts/dtos/ICreateUserTokenDTO";
-import { UserToken } from "@modules/accounts/infra/typeorm/entities/UserToken";
-import { IUserTokenReposiory } from "../IUserTokenRepository";
+import { ICreateUserTokenDTO } from "@modules/accounts/dtos/ICreateUserTokenDTO"
+import { UserToken } from "@modules/accounts/infra/typeorm/entities/UserToken"
+import { IUserTokenReposiory } from "../IUserTokenRepository"
 
 class UsersTokenRepositoryInMemory implements IUserTokenReposiory{
   usersTokens: UserToken[] = []

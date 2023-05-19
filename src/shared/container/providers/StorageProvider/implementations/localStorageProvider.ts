@@ -1,6 +1,6 @@
 import fs from "fs"
 import { resolve } from "path"
-import { IStorageProvider } from "../IStorageProvider";
+import { IStorageProvider } from "../IStorageProvider"
 import upload from "@config/upload"
 
 class LocalStorageProvider implements IStorageProvider {

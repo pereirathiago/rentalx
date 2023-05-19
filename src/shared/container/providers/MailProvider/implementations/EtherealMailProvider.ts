@@ -1,5 +1,5 @@
-import { injectable } from "tsyringe";
-import { IMailProvider } from "../IMailProvider";
+import { injectable } from "tsyringe"
+import { IMailProvider } from "../IMailProvider"
 import nodemailer, { Transporter } from "nodemailer"
 import handlebars from "handlebars"
 import fs from "fs"

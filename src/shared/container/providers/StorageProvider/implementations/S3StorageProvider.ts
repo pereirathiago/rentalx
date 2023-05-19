@@ -1,9 +1,9 @@
-import { S3 } from "aws-sdk";
+import { S3 } from "aws-sdk"
 import { resolve } from "path"
 import fs from "fs"
 import mime from "mime"
-import { IStorageProvider } from "../IStorageProvider";
-import upload from "@config/upload";
+import { IStorageProvider } from "../IStorageProvider"
+import upload from "@config/upload"
 
 class S3StorageProvider implements IStorageProvider {
   private client: S3

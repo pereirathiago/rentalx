@@ -20,7 +20,7 @@ class UploadCarImageUseCase {
     images_name.map(async (image) => {
       await this.carsImagesRepository.create(car_id, image)
       await this.storageProvider.save(image, "cars")
-    });
+    })
   }
 }
 
